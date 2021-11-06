@@ -9,4 +9,4 @@ Project for: Michael Critchelow
 
 ./app is the unbuilt version of the React.js app
 ./build is the most live version of the built app
-./server is the basic electron.js server which serves the app
+./server is the basic express.js server which serves the app
