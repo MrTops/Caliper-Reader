@@ -1,3 +1,7 @@
+* {
+  user-select: none;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -13,24 +17,8 @@
 
 .topbar-item {
   font-size: large;
-  border: 2px solid darkgray;
   padding: 4px;
   background-color: transparent;
-  transition: transform 150ms, background-color 150ms, border 100ms;
-}
-
-.topbar-item:hover {
-  transform: scale(1.1);
-  background-color: white;
-  z-index: 2;
-}
-
-.topbar-item:active {
-  transform: scale(1.05);
-}
-
-.topbar-selected {
-  border: 3px solid darkgray;
 }
 
 .big-container {
@@ -39,4 +27,6 @@
   max-height: 800px;
   width: 60vw;
   height: 60vh;
+  position: absolute;
+  transform: translate(-50%, 40px);
 }

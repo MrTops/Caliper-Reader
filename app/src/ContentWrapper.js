@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
+import { Motion, spring } from "react-motion";
 
 const ContentWrapper = props => {
-	const [render, setRender] = useState(props.isActive);
-
-	useEffect(() => {
-		if (props.isActive === true) {
-			setRender(true);
-			return;
-		}
-		
-		setTimeout(() => setRender(false), 1000);
-	});
-
-	return render === true ? (<div>{props.children}</div>) : null;
+	return (<Motion defaultStyle={{scale: 1.1, opacity: 0,}} style={{scale: spring(props.isActive ? 1 : 0.9), opacity: spring(props.isActive ? 1 : 0),}}>
+		{value => <div style={{transform: `scale(${value.scale})`, opacity: value.opacity}}>{props.children}</div>}
+	</Motion>);
 };
 
 export default ContentWrapper;
