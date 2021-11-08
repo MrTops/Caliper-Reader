@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Caliper from './Caliper';
 import CreateReadout from './CreateReadout';
 import Quiz from './Quiz';
 import Settings from './Settings';
@@ -14,6 +15,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <Caliper value={100} />
       <TopBar onChange={handleTopbarChange} />
       <div className="piece-container">
         <Quiz isActive={selectedMenu === TopBarStates[0]} />
