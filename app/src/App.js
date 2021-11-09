@@ -15,7 +15,6 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Caliper value={100} />
       <TopBar onChange={handleTopbarChange} />
       <div className="piece-container">
         <Quiz isActive={selectedMenu === TopBarStates[0]} />
