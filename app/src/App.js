@@ -15,12 +15,12 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <TopBar onChange={handleTopbarChange} />
-      <div className="piece-container">
+      <TopBar onChange={handleTopbarChange} /><br/>
+      <div className="piece-container"> {/* Just a warning; the css for this is EXTREMELY hacky. */}
         <Quiz isActive={selectedMenu === TopBarStates[0]} />
         <CreateReadout isActive={selectedMenu === TopBarStates[1]} />
         <Settings isActive={selectedMenu === TopBarStates[2]} />
-      </div>
+      </div><br/>
       <p>Copyright ©️ 2021 Eldon Williams. All Rights Reserved</p> {/* If this is removed you must credit somewhere else. */}
     </div>
   );
