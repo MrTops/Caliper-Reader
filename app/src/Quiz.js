@@ -8,7 +8,7 @@ const Quiz = props => {
 	const handleValueChange = e => {
 		const newValue = e.target.value;
 		console.log(parseInt(newValue));
-		setInputValue(parseInt(newValue) || 0);
+		setInputValue(parseInt(newValue));
 	};
 
 	return (<ContentWrapper isActive={props.isActive}>
