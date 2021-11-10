@@ -47,6 +47,39 @@ const Caliper = props => {
                 }} cleanupFunction={(ctx) => {
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                 }} />
+                <WrappedCanvas drawingFunction={(ctx) => {
+                    /**
+                     * Inch Renderer
+                     */
+                    
+                    var inchAmount = parseFloat((style.value / 1000).toFixed(1));
+                    var height = ctx.canvas.height;
+                    var width = ctx.canvas.width;
+
+                    var lineOffset = inchAmount / width;
+
+                    ctx.strokeRect(0, 0, width, height / 2);
+                    ctx.textAlign = "right";
+                    for (let i = -20; i < 20; i++) {
+                        // I is the current 1/10 of an inch we are on
+                        // There should be 10 rendered 1/10th of a inch markers
+                        // The actual 1/10 of an inch we are referring to should be highlighted
+                        var currentValue = inchAmount + (i * 0.1);
+                        var xCenter = (width / 2) + (i * (width / 12)) + lineOffset;
+                        var isWhole = Math.floor(currentValue) === currentValue;
+                        //
+                        ctx.strokeStyle = currentValue.toFixed(1) === (Math.floor(props.value / 100) / 10).toFixed(1) ? "green" : "black";
+                        ctx.beginPath();
+                        ctx.lineWidth = isWhole ? 2 : 1;
+                        ctx.moveTo(xCenter, height / 2);
+                        ctx.lineTo(xCenter, height / 2 - (isWhole ? 15 : 10));
+                        ctx.stroke();
+                        ctx.lineWidth = 1;
+                        ctx.strokeText(isWhole ? currentValue : (currentValue - Math.floor(currentValue)).toFixed(1), xCenter - 2, height / 2.2);
+                    }
+                }} cleanupFunction={(ctx) => {
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                }} />
             </div>);
         }}
     </Motion>);
