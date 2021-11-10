@@ -65,6 +65,7 @@ const Caliper = props => {
                         // There should be 10 rendered 1/10th of a inch markers
                         // The actual 1/10 of an inch we are referring to should be highlighted
                         var currentValue = inchAmount + (i * 0.1);
+                        if (currentValue < 0) continue;
                         var xCenter = (width / 2) + (i * (width / 12)) + lineOffset;
                         var isWhole = Math.floor(currentValue) === currentValue;
                         //
