@@ -3,7 +3,7 @@ import { Motion, spring } from "react-motion";
 import WrappedCanvas from "./WrappedCanvas";
 
 const Caliper = props => {
-    return (<Motion style={{value: spring(props.value),}}>
+    return (<Motion style={{value: spring(props.value || 0),}}>
         {style => {
             return (<div>
                 <WrappedCanvas drawingFunction={(ctx) => {
