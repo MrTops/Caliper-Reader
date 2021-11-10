@@ -26,9 +26,3 @@
   position: absolute;
   transform: translate(-50%, 40px);
 }
-
-.caliper-dial {
-  transform-origin: center;
-  width: fit-content;
-  margin: 35px;
-}

@@ -7,11 +7,12 @@ const Caliper = props => {
         {style => {
             return (<div>
                 <WrappedCanvas drawingFunction={(ctx) => {
-                    ctx.imageSmoothingEnabled = true;
-
-                    const shortAxis = Math.min(ctx.canvas.width, ctx.canvas.height);
-                    const height = ctx.canvas.height;
-                    const width = ctx.canvas.width;
+                    /**
+                     * Dial Drawer
+                     */
+                    var height = ctx.canvas.height; // This is the height/width of what I want the 
+                    var width = ctx.canvas.width;
+                    var shortAxis = Math.min(width, height);
                     ctx.beginPath();
                     ctx.ellipse(width / 2, height / 2, shortAxis / 2, shortAxis / 2, 0, 0, 2 * Math.PI)
                     ctx.stroke();
@@ -21,9 +22,9 @@ const Caliper = props => {
                     for (let i = 0; i < 100; i++) {
                         ctx.lineWidth = i % 10 === 0 ? 2 : 0;
                         ctx.beginPath();
-                        const theta = i/50 * Math.PI + (Math.PI * 1.5);
-                        const moveToRadius = shortAxis / 2;
-                        const lineToRadius = shortAxis / 2.35;
+                        var theta = i/50 * Math.PI + (Math.PI * 1.5);
+                        var moveToRadius = shortAxis / 2;
+                        var lineToRadius = shortAxis / 2.35;
                         ctx.moveTo(moveToRadius * Math.cos(theta) + shortAxis, moveToRadius * Math.sin(theta) + shortAxis / 2);
                         ctx.lineTo(lineToRadius * Math.cos(theta) + shortAxis, lineToRadius * Math.sin(theta) + shortAxis / 2);
                         ctx.stroke();
@@ -37,8 +38,8 @@ const Caliper = props => {
                     ctx.lineWidth = 2;
                     ctx.moveTo(width / 2, height / 2);
                     // Im gonna use some really smart math here
-                    const theta = (-Math.PI / 2) + (style.value * 3.6) * Math.PI / 180;
-                    const radius = shortAxis / 2.35;
+                    var theta = (-Math.PI / 2) + (style.value * 3.6) * Math.PI / 180;
+                    var radius = shortAxis / 2.35;
                     ctx.lineTo(radius * Math.cos(theta) + shortAxis, radius * Math.sin(theta) + shortAxis / 2);
                     ctx.stroke();
                     ctx.strokeStyle = "black";

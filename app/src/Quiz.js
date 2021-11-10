@@ -12,7 +12,7 @@ const Quiz = props => {
 	};
 
 	return (<ContentWrapper isActive={props.isActive}>
-		<div className="big-container">
+		<div style={{display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",}} className="big-container">
 			<Caliper value={inputValue} />
 			<form>
 				<label>
