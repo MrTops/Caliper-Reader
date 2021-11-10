@@ -12,7 +12,7 @@ const WrappedCanvas = props => {
         drawingFunction(ref.current.getContext("2d"));
     });
 
-    return (<canvas ref={ref} props={{...props}} />)
+    return (<canvas ref={ref} style={{...props.style}} />)
 };
 
 export default WrappedCanvas;
