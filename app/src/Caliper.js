@@ -3,7 +3,7 @@ import { Motion, spring } from "react-motion";
 import WrappedCanvas from "./WrappedCanvas";
 
 const Caliper = props => {
-    return (<Motion style={{value: spring(props.value || 0),}}>
+    return (<Motion defaultStyle={{value: 0,}} style={{value: spring(props.value || 0),}}>
         {style => {
             return (<div>
                 <WrappedCanvas drawingFunction={(ctx) => {
@@ -46,7 +46,7 @@ const Caliper = props => {
                     ctx.lineWidth = 1;
                 }} cleanupFunction={(ctx) => {
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                }} />
+                }} /><br/>
                 <WrappedCanvas drawingFunction={(ctx) => {
                     /**
                      * Inch Renderer
@@ -56,17 +56,15 @@ const Caliper = props => {
                     var height = ctx.canvas.height;
                     var width = ctx.canvas.width;
 
-                    var lineOffset = inchAmount / width;
-
-                    ctx.strokeRect(0, 0, width, height / 2);
                     ctx.textAlign = "right";
                     for (let i = -20; i < 20; i++) {
                         // I is the current 1/10 of an inch we are on
                         // There should be 10 rendered 1/10th of a inch markers
                         // The actual 1/10 of an inch we are referring to should be highlighted
                         var currentValue = inchAmount + (i * 0.1);
-                        if (currentValue < 0) continue;
-                        var xCenter = (width / 2) + (i * (width / 12)) + lineOffset;
+                        if (parseFloat(currentValue.toFixed(1)) < 0) continue;
+                        // The parseFloat seems hacky, but I ran into some floating point errors
+                        var xCenter = (width / 2) + (i * (width / 12));
                         var isWhole = Math.floor(currentValue) === currentValue;
                         //
                         ctx.strokeStyle = currentValue.toFixed(1) === (Math.floor(props.value / 100) / 10).toFixed(1) ? "green" : "black";
@@ -76,7 +74,7 @@ const Caliper = props => {
                         ctx.lineTo(xCenter, height / 2 - (isWhole ? 15 : 10));
                         ctx.stroke();
                         ctx.lineWidth = 1;
-                        ctx.strokeText(isWhole ? currentValue : (currentValue - Math.floor(currentValue)).toFixed(1), xCenter - 2, height / 2.2);
+                        ctx.strokeText(isWhole ? currentValue : (currentValue - Math.floor(currentValue)).toFixed(1).substr(2, 1), xCenter - 2, height / (isWhole ? 2.2 : 2.125));
                     }
                 }} cleanupFunction={(ctx) => {
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
