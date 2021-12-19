@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Motion, spring } from "react-motion";
 
 const ContentWrapper = props => {
