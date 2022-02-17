@@ -10,10 +10,6 @@ const TopBarStates = [
 		index: 1,
 		buttonText: "Create a Readout",
 	},
-	{
-		index: 2,
-		buttonText: "Settings",
-	},
 ];
 
 const TopBarButton = props => {
